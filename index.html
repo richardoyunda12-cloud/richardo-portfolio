@@ -307,8 +307,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,9,8,.88);backdrop-filte
 .sk-icon{color:var(--amb);}
 .sk-icon svg{width:14px;height:14px;}
 .sk-name{font-family:var(--mono);font-size:var(--txs);font-weight:700;color:var(--tx);}
-.sk-tags{display:flex;flex-wrap:wrap;gap:6px;}
-.sk-tag{font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:var(--rsm);background:var(--sf3);color:var(--txm);border:1px solid var(--bd);}
+.sk-tags{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:6px;}
+.sk-tag{font-family:var(--mono);font-size:var(--t2xs);background:var(--sf3);border:1px solid var(--bd);border-radius:var(--rsm);padding:var(--sp2) var(--sp3);color:var(--txm);text-align:center;}
 
 /* ── EXPERIENCE ── */
 .exp-tl{position:relative;padding-left:var(--sp12);}
