@@ -409,6 +409,12 @@ footer{border-top:1px solid var(--bd);padding:var(--sp8);}
   section{padding-block:clamp(var(--sp6),4vw,var(--sp10));}
 }
 
+
+
+.read-time{display:inline-flex;align-items:center;gap:var(--sp2);font-family:var(--mono);font-size:var(--t2xs);color:var(--txm);margin-bottom:var(--sp4);}
+.read-time svg{color:var(--amb);}
+
+
 /* ── Prev/Next Navigation ── */
 .proj-nav{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp4);margin-top:var(--sp12);padding-top:var(--sp8);border-top:1px solid var(--bd);}
 .proj-nav-link{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:var(--sp5) var(--sp6);display:flex;flex-direction:column;gap:var(--sp2);text-decoration:none;position:relative;overflow:hidden;transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr);}
@@ -422,11 +428,6 @@ footer{border-top:1px solid var(--bd);padding:var(--sp8);}
 .proj-nav-num{font-size:var(--txs);color:var(--txf);}
 .proj-nav-empty{display:block;}
 @media(max-width:560px){.proj-nav{grid-template-columns:1fr;}}
-
-
-.read-time{display:inline-flex;align-items:center;gap:var(--sp2);font-family:var(--mono);font-size:var(--t2xs);color:var(--txm);margin-bottom:var(--sp4);}
-.read-time svg{color:var(--amb);}
-
 </style>
 </head>
 <body>
@@ -1151,11 +1152,9 @@ tgt = (df[<span class="code-s">'Qty_S'</span>].fillna(<span class="code-n">0</sp
 
 
 <div class="container" style="padding-bottom:var(--sp12);">
-  <div class="proj-nav">
-    <div class="proj-nav-empty"></div>
-    <a href="ics-case-study.html" class="proj-nav-link next"><span class="proj-nav-dir">Next &#8594;</span><span class="proj-nav-title">Inventory Control System</span><span class="proj-nav-num">Case Study 02 of 6</span></a>
-  </div>
+<div class="proj-nav"><div class="proj-nav-empty"></div><a href="ics-case-study.html" class="proj-nav-link next"><span class="proj-nav-dir">Next &#8594;</span><span class="proj-nav-title">Inventory Control System</span><span class="proj-nav-num">Case Study 02 of 6</span></a></div>
 </div>
+
 <footer>
   <div class="ft-in">
     <div class="ft-l">Richardo Yunda Putranto <span>&middot;</span> Case Study 01 of 6</div>

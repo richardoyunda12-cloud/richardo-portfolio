@@ -676,6 +676,20 @@ footer{border-top:1px solid var(--bd);padding:var(--sp8);}
 .read-time{display:inline-flex;align-items:center;gap:var(--sp2);font-family:var(--mono);font-size:var(--t2xs);color:var(--txm);margin-bottom:var(--sp4);}
 .read-time svg{color:var(--amb);}
 
+
+/* ── Prev/Next Navigation ── */
+.proj-nav{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp4);margin-top:var(--sp12);padding-top:var(--sp8);border-top:1px solid var(--bd);}
+.proj-nav-link{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:var(--sp5) var(--sp6);display:flex;flex-direction:column;gap:var(--sp2);text-decoration:none;position:relative;overflow:hidden;transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr);}
+.proj-nav-link::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--amb);transform:scaleY(0);transform-origin:bottom;transition:transform .4s var(--ease);}
+.proj-nav-link:hover{transform:translateY(-2px);box-shadow:var(--shmd);border-color:var(--bda);}
+.proj-nav-link:hover::before{transform:scaleY(1);}
+.proj-nav-link.next{text-align:right;}
+.proj-nav-link.next::before{left:auto;right:0;}
+.proj-nav-dir{font-family:var(--mono);font-size:var(--t2xs);color:var(--txm);letter-spacing:.1em;text-transform:uppercase;}
+.proj-nav-title{font-family:var(--mono);font-size:var(--tsm);font-weight:700;color:var(--amb);}
+.proj-nav-num{font-size:var(--txs);color:var(--txf);}
+.proj-nav-empty{display:block;}
+@media(max-width:560px){.proj-nav{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
@@ -1580,19 +1594,8 @@ footer{border-top:1px solid var(--bd);padding:var(--sp8);}
 
 <!-- ══════════════════════════════════════ FOOTER ══════════════════════════════════════ -->
 
-<div class="container">
-  <div class="proj-nav">
-    <a href="ics-case-study.html" class="proj-nav-link prev">
-        <span class="proj-nav-dir">&#8592; Previous</span>
-        <span class="proj-nav-title">Inventory Control System</span>
-        <span class="proj-nav-num">Case Study 02 of 6</span>
-      </a>
-    <a href="autoweigh-case-study.html" class="proj-nav-link next">
-        <span class="proj-nav-dir">Next &#8594;</span>
-        <span class="proj-nav-title">AutoWeigh</span>
-        <span class="proj-nav-num">Case Study 04 of 6</span>
-      </a>
-  </div>
+<div class="container" style="padding-bottom:var(--sp12);">
+<div class="proj-nav"><a href="ics-case-study.html" class="proj-nav-link prev"><span class="proj-nav-dir">&#8592; Previous</span><span class="proj-nav-title">Inventory Control System</span><span class="proj-nav-num">Case Study 02 of 6</span></a><a href="autoweigh-case-study.html" class="proj-nav-link next"><span class="proj-nav-dir">Next &#8594;</span><span class="proj-nav-title">AutoWeigh</span><span class="proj-nav-num">Case Study 04 of 6</span></a></div>
 </div>
 
 <footer style="padding:var(--sp12) 0 var(--sp8);border-top:1px solid var(--bd);margin-top:var(--sp12);">
