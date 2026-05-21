@@ -303,8 +303,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,9,8,.88);backdrop-filte
 /* ── SKILLS ── */
 .sk-layout{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp16);align-items:start;}
 .sk-intro p{font-size:var(--tsm);color:var(--txm);line-height:1.78;margin-bottom:var(--sp4);}
-.sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp3);}
-.sk-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:var(--sp5);transition:border-color var(--tr);}
+.sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp3);align-items:start;}
+.sk-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:var(--sp5);transition:border-color var(--tr);height:fit-content;}
 .sk-card:hover{border-color:var(--bdh);}
 .sk-hd{display:flex;align-items:center;gap:var(--sp2);margin-bottom:var(--sp4);}
 .sk-icon{color:var(--amb);}
@@ -699,23 +699,19 @@ footer{border-top:1px solid var(--bd);padding:var(--sp8);}
         </div>
       </div>
 
-      <!-- 06 PowerBI WIDE -->
-      <div class="card card-wide reveal">
+      <!-- 06 PowerBI -->
+      <div class="card card-sm reveal d2">
         <div class="glare-c"><div class="glare"></div></div>
-        <div class="ci pw-inner">
-          <div class="pw-left">
-            <div class="cn">06</div>
-            <div style="display:flex;gap:var(--sp2);flex-wrap:wrap;margin-bottom:var(--sp3);">
-              <span class="badge bbi">Analytics &middot; BI</span>
-              <span class="slive"><span class="dot"></span>LIVE</span>
-            </div>
-            <h3 class="ct">PowerBI Daily Dashboard &amp; Analytics</h3>
-            <p class="cs" style="margin-bottom:0;">Daily sales monitoring, competitor benchmarks, regional breakdowns and trend alerts. Used by leadership every morning before the daily briefing.</p>
+        <div class="ci">
+          <div class="cn">06</div>
+          <div style="display:flex;gap:var(--sp2);flex-wrap:wrap;margin-bottom:var(--sp3);">
+            <span class="badge bbi">Analytics &middot; BI</span>
+            <span class="slive"><span class="dot"></span>LIVE</span>
           </div>
-          <div class="pw-right">
-            <div class="chips pw-chips"><span>Power BI</span><span>DAX</span><span>SQL Server</span></div>
-            <p class="ch pw-note">// scheduled refresh &middot; multi-region model</p>
-          </div>
+          <h3 class="ct">PowerBI Daily Dashboard</h3>
+          <p class="cs">Daily sales monitoring, competitor benchmarks, regional breakdowns and trend alerts. Used by leadership every morning before the daily briefing.</p>
+          <p class="ch">// scheduled refresh &middot; multi-region model</p>
+          <div class="chips" style="margin-bottom:var(--sp4);"><span>Power BI</span><span>DAX</span><span>SQL Server</span></div>
         </div>
       </div>
 
@@ -761,7 +757,7 @@ footer{border-top:1px solid var(--bd);padding:var(--sp8);}
         </div>
         <div class="sk-card">
           <div class="sk-hd"><div class="sk-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="14" x2="22" y2="14"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="14" x2="4" y2="14"/></svg></div><span class="sk-name">IoT &amp; Hardware</span></div>
-          <p class="sk-ctx">ESP32 reads industrial scales via RS232/MAX3232 &rarr; Supabase Realtime &rarr; React dashboard. Full pipeline under $10 hardware cost per unit.</p>
+          <p class="sk-ctx">ESP32 reads industrial scales via RS232/MAX3232 &rarr; Supabase Realtime &rarr; React dashboard. Full pipeline under Rp 150,000 hardware cost per node.</p>
           <div class="sk-tags"><span class="sk-tag">ESP32</span><span class="sk-tag">RS232</span><span class="sk-tag">MAX3232</span><span class="sk-tag">Realtime</span></div>
         </div>
         <div class="sk-card">
