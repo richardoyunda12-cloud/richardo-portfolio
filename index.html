@@ -303,13 +303,13 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,9,8,.88);backdrop-filte
 /* ── SKILLS ── */
 .sk-layout{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp16);align-items:start;}
 .sk-intro p{font-size:var(--tsm);color:var(--txm);line-height:1.78;margin-bottom:var(--sp4);}
-.sk-grid{columns:2;column-gap:var(--sp3);}
-.sk-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:var(--sp5);transition:border-color var(--tr);break-inside:avoid;margin-bottom:var(--sp3);}
+.sk-grid{display:flex;flex-direction:column;gap:var(--sp3);}
+.sk-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:var(--sp5);transition:border-color var(--tr);display:grid;grid-template-columns:160px 1fr;gap:var(--sp4) var(--sp6);align-items:start;}
 .sk-card:hover{border-color:var(--bdh);}
 .sk-hd{display:flex;align-items:center;gap:var(--sp2);margin-bottom:var(--sp4);}
 .sk-icon{color:var(--amb);}
 .sk-icon svg{width:14px;height:14px;}
-.sk-name{font-family:var(--mono);font-size:var(--txs);color:var(--txf);letter-spacing:.1em;text-transform:uppercase;}
+.sk-name{font-family:var(--mono);font-size:var(--txs);font-weight:700;color:var(--tx);}
 .sk-tags{display:flex;flex-wrap:wrap;gap:var(--sp1);}
 .sk-tag{font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:var(--rsm);background:var(--sf3);color:var(--txm);border:1px solid var(--bd);}
 
@@ -407,6 +407,8 @@ footer{border-top:1px solid var(--bd);padding:var(--sp8);}
   .ft-in,.rs-in{flex-direction:column;gap:var(--sp3);}
   section{padding-block:clamp(3rem,5vw,4rem);}
 }
+
+@media(max-width:600px){.sk-card{grid-template-columns:1fr;}.sk-hd{flex-direction:row;}}
 </style>
 </head>
 <body>
