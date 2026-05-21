@@ -303,8 +303,8 @@ nav{position:sticky;top:0;z-index:100;background:rgba(10,9,8,.88);backdrop-filte
 /* ── SKILLS ── */
 .sk-layout{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp16);align-items:start;}
 .sk-intro p{font-size:var(--tsm);color:var(--txm);line-height:1.78;margin-bottom:var(--sp4);}
-.sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp3);align-items:start;}
-.sk-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:var(--sp5);transition:border-color var(--tr);height:fit-content;}
+.sk-grid{columns:2;column-gap:var(--sp3);}
+.sk-card{background:var(--sf);border:1px solid var(--bd);border-radius:var(--rlg);padding:var(--sp5);transition:border-color var(--tr);break-inside:avoid;margin-bottom:var(--sp3);}
 .sk-card:hover{border-color:var(--bdh);}
 .sk-hd{display:flex;align-items:center;gap:var(--sp2);margin-bottom:var(--sp4);}
 .sk-icon{color:var(--amb);}
