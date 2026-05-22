@@ -468,7 +468,7 @@ footer{border-top:1px solid var(--bd);padding:var(--sp8);}
     <div class="trial-badge reveal">&#9651; Active Trial &mdash; Metric validation in progress</div>
     <h1 class="hero-title reveal d1">Supply Chain <span class="a">Demand</span><br/>Forecasting XGBoost</h1>
     <div class="read-time reveal d1"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>16 min read</div>
-    <p class="hero-sub reveal d1">Manual demand forecasting for 6,500+ stores took 4‑5 hours every morning — before any distribution decisions could be made. Built an automated XGBoost pipeline: 345,011 records processed daily, 96.63% WAPE accuracy. The work that took half a morning now takes zero.</p>
+    <p class="hero-sub reveal d1">Manual demand forecasting for 6,500+ stores took 4‑5 hours every morning — before any distribution decision could be made. 10+ people spent 4–5 hours every morning on manual forecasting. Now zero. Built an automated XGBoost pipeline: 345,011 records, 96.63% WAPE accuracy.</p>
     <p class="hero-impact reveal d1">The operational time cost of manual forecasting has been eliminated. Death spiral detection, Eid demand modelling, and new-store cold-start are all built into the pipeline &mdash; effectiveness at scale is what the trial is measuring.</p>
     <div class="scale-row reveal d2">
       <span class="sc-pill"><span class="dot"></span>6,500 active stores</span>
@@ -508,7 +508,7 @@ footer{border-top:1px solid var(--bd);padding:var(--sp8);}
     <div class="tldr-lbl">TL;DR</div>
     <div class="tldr-rows">
       <div class="tldr-row"><div class="tldr-key">Problem</div><div class="tldr-txt">Every morning, someone had to manually calculate how much bread each store should order that day. The process took 4&ndash;5 hours, had no safeguards for seasonal spikes, and no way to detect stores falling into a self-reinforcing ordering collapse</div></div>
-      <div class="tldr-row"><div class="tldr-key">Result</div><div class="tldr-txt">Daily forecasting time reduced from 4&ndash;5 hours manual to automated pipeline execution &mdash; confirmed. The system generates order recommendations for every store, every SKU, every day before the fleet departs. Trial accuracy: WAPE 96.6%, BIAS +2.57%. Waste and stockout impact currently being measured</div></div>
+      <div class="tldr-row"><div class="tldr-key">Result</div><div class="tldr-txt">10+ people spent 4–5 hours every morning on manual forecasting. Now zero. Fully automated pipeline: 345,011 records, 96.63% WAPE accuracy.</div></div>
       <div class="tldr-row"><div class="tldr-key">Why hard</div><div class="tldr-txt">Most stores sell very few units per day, making patterns hard to detect. Stockout days look identical to zero-demand days in the data. Seasonal events like Eid don&rsquo;t appear often enough in history for the model to learn automatically</div></div>
     </div>
   </div>
