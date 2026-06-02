@@ -1,0 +1,384 @@
+
+
+===== AUTOWEIGH-CASE-STUDY.HTML =====
+
+
+===== ICS-CASE-STUDY.HTML =====
+ - Projects
+      
+      Inventory Control System
+    
+
+    
+      
+      02 &nbsp;&middot;&nbsp; Inventory Control
+    
+
+    Inventory Control System
+    10 min read
+    Period-end reconciliation took a full working day  five Excel files that never agreed. Period analysis ran 35 times a week, each taking a full working day. Now under 5 minutes. Real-time costing, anomaly detection, and reorder signals  used daily by the operations team.
+ - &lt; 5 Min
+        After &mdash; automated platform
+      
+    
+
+    
+      
+        Role
+        Full-stack Engineer
+      
+      
+        Scale
+        Internal factory tool &middot; ~5 concurrent users
+      
+      
+        Status
+        &#9679; Live in Production
+      
+      
+        Stack
+        React 19 &middot; Supabase &middot; Groq AI
+      
+    
+  
+
+
+
+
+  
+    TL;DR
+    
+      
+        Problem
+        Five disconnected Excel files for stock, costing, and orders &mdash; reconciliation took a full working day every period. Production anomalies were invisible because the data was too fragmented to analyze.
+      
+      
+        Result
+        One integrated platform used daily by the operations team &mdash; period analysis cut from a full day to under 5 minutes. Cost variances visible in real-time per transaction. Production anomalies flagged automatically before month-end close.
+      
+      
+        Why hard
+        No existing data infrastructure. Had to build BOM explosion logic, dual costing tracks, column normalization across inconsistent operator files, ratio-based Z-score anomaly detection, and a statistical ROP optimizer from scratch on a real production timeline &mdash; no existing data infrastructure.
+      
+    
+  
+
+
+
+
+
+
+  
+    
+      Results
+      Impact at a Glance
+    
+    
+      
+        &lt; 5 min
+        Period analysis time
+        From a full working day of manual Excel reconciliation
+      
+      
+        5
+        Integrated modules
+        Work Order Ingestion &middot; Dual Costing &middot; Anomaly &middot; ROP &middot; Scenario
+      
+      
+        Real-time
+        Stock &amp; cost visibility
+        Before: calling the warehouse, or opening a stale Excel file
+      
+      
+        1
+        Single source of truth
+        Replaced all disconnected Excel files &mdash; live in production
+      
+    
+  
+
+
+
+
+
+
+  
+    
+      The Problem
+      A Full Day of Analysis, Every Period
+      A large-scale bakery with hundreds of SKUs and dozens of raw materials &mdash; all data scattered across disconnected Excel files with no single source of truth.
+ - After &mdash; Inventory Control System
+        
+        
+          One centralized platform &mdash; single source of truth for all data
+          Period analysis completed in minutes, not a full day
+          COGS variance visible in real-time per transaction, not at month-end
+          Live stock dashboard &mdash; no more opening stale Excel files
+          Reorder Point calculated from actual historical consumption &mdash; statistical basis
+          Anomalies flagged automatically via Z-score + 30-day heatmap timeline
+          Bulk work order upload with automatic column normalization &mdash; any operator file format accepted without manual mapping
+        
+      
+    
+  
+
+
+
+
+
+
+  
+    
+      Live Product
+      Anomaly Detection &mdash; In Use
+      Z-score anomaly panel with rule-based root cause analysis. Each row shows material, severity, usage ratio vs recipe baseline, and estimated cost discrepancy.
+ - Live production UI &middot; Screenshot uses dummy data
+
+[H2] Core Modules
+ - Two modules forming the data foundation &mdash; production work orders flow in, are normalized, and BOM-exploded automatically into per-material ledger entries that every downstream module reads from.
+ - Production work order files (internally called SPK &mdash; Surat Perintah Kerja) are uploaded via drag-and-drop. The system normalizes Excel headers via a keyword synonym map &mdash; "PLU", "Kode", "PB" are all resolved to canonical column names automatically. Each batch is then BOM-exploded client-side and committed to Supabase: 847 rows &rarr; 3,204 ledger entries end-to-end including file parse, BOM lookup, and network round-trip. Each batch is immediately exploded against the active BOM, generating per-material ledger entries automatically.
+ - Two cost tracks run in parallel: System COGS (BOM &times; master price) and Actual COGS (real transaction price from the ledger). Variances are shown per material and per period. Groq AI generates a one-paragraph executive narrative from the aggregated variance summary &mdash; only category-level totals and percentage deviations are sent to the API, not raw transaction data, supplier names, or unit prices. Management reads the narrative directly without interpreting tables.
+
+[H2] Intelligence Modules
+ - Three modules that transform raw ledger data into operational decisions &mdash; driven by statistics and projections, not manual intuition.
+ - Each transaction is scored by comparing its gudang-vs-resep ratio to that material's own historical ratio baseline &mdash; not raw quantity. If a material consistently uses 130% of its recipe, that is its normal; Z-score &asymp; 0. An anomaly fires only when today's ratio deviates from its own history. Threshold: &ge;2&sigma; = warning, &ge;3.5&sigma; = critical. Results are visualized two ways: a ranked severity table for per-material drill-down, and a 30-day SVG heatmap timeline showing anomaly distribution at a glance.
+ - Safety Stock and Reorder Point calculated per material from actual historical consumption. Forecast blends two algorithms &mdash; Weighted Moving Average (WMA) and Simple Exponential Smoothing (SES) &mdash; so recent spikes and long-term trends are both captured. Service level is configurable (default 95%).
+ - Two-dimensional what-if: material price slider (&plusmn;30%) and usage variance slider (&plusmn;20%). Every adjustment instantly re-projects end-of-month COGS &mdash; all calculations client-side, zero server delay.
+ - Two primary use cases: supplier price negotiation and production efficiency planning.
+
+[H2] How the Modules Connect
+ - Each module shares a single Supabase ledger as its source of truth. Data flows in from SPK ingestion and branches out to four independent analytics engines &mdash; none of them re-import or copy data.
+
+[H2] Key Engineering Details
+ - Two patterns that show how the system handles complexity: a forecasting engine that blends two algorithms per material, and a rule-based RCA tree that explains anomalies without an AI API call. The Z-score runs on each material's usage ratio &mdash; not raw quantity &mdash; so habitual over-use doesn't generate false positives.
+
+[H2] Tools Used
+
+
+===== IOT-CASE-STUDY.HTML =====
+
+
+===== KRAT-CASE-STUDY.HTML =====
+
+
+===== MAP-CASE-STUDY.HTML =====
+
+
+===== PROJECT-XGBOOST.HTML =====
+ - Projects
+      
+      XGBoost Demand Forecasting
+    
+    
+      
+      01 &middot; ML &middot; Supply Chain System
+    
+    &#9651; Active Trial &mdash; Metric validation in progress
+    Supply Chain DemandForecasting XGBoost
+    16 min read
+    Manual demand forecasting for 6,500+ stores took 45 hours every morning  before any distribution decision could be made. 10+ people spent 45 hours every morning on manual forecasting. Now under 1 hour for review and sign-off. Built an automated XGBoost pipeline: 345,011 records, 96.63% WAPE accuracy.
+ - The operational time cost of manual forecasting has been eliminated. Death spiral detection, Eid demand modelling, and new-store cold-start are all built into the pipeline &mdash; effectiveness at scale is what the trial is measuring.
+ - 96.6% WAPE
+        After &mdash; Automated, zero manual input
+      
+      
+      
+        +2.57%
+        BIAS &mdash; Systemic Over-estimate
+      
+    
+    
+      RoleFull-stack ML Engineer
+      Scale6,500 stores &middot; dozens of SKUs
+      DeploymentAutomated &middot; Daily
+      StackXGBoostSQL ServerPython
+    
+  
+
+
+
+
+  
+    TL;DR
+    
+      ProblemEvery morning, someone had to manually calculate how much bread each store should order that day. The process took 4&ndash;5 hours, had no safeguards for seasonal spikes, and no way to detect stores falling into a self-reinforcing ordering collapse
+      Result10+ people spent 45 hours every morning on manual forecasting. Now under 1 hour for review and sign-off. Fully automated pipeline: 345,011 records, 96.63% WAPE accuracy.
+      Why hardMost stores sell very few units per day, making patterns hard to detect. Stockout days look identical to zero-demand days in the data. Seasonal events like Eid don&rsquo;t appear often enough in history for the model to learn automatically
+    
+  
+
+
+
+
+
+
+  
+    
+      The Problem
+      Wrong Predictions Mean Wasted Product
+      Truck fleets depart every morning with predetermined cargo. There is no tolerance for error: over-supply means bread comes back and is discarded, under-supply means lost sales and stores switching to competitors.
+ - Over-supply &rarr; Production Waste
+        Unsold bread is returned but its shelf life has already expired. Production + logistics costs are wasted &mdash; return rates spike on weekends and ahead of major events.
+      
+      
+        
+        Corrupted Historical Data
+        A store that ran out of stock on Monday still records zero sales. A naive model trained on this data will always under-estimate &mdash; this is known as censored demand or lost sales.
+      
+      
+        
+        63% of Data &mdash; Small Stores, Rarely Buy
+        63% of all data comes from stores selling &lt;0.5 units/day on average. Standard regression fails here &mdash; the question isn't "how many units?" but "will anything sell at all tomorrow?"
+      
+    
+    
+      
+        
+          
+          Before &mdash; Manual Excel &amp; Guesswork
+        
+        
+          Forecasting done manually in Excel &mdash; took a full day, one person, error-prone
+          New stores without history receive no prediction
+          Death spiral undetected until returns pile up at warehouse
+          Manual forecast during festive seasons &mdash; Eid stockouts from underestimation
+        
+      
+      
+      
+        
+          
+          System Design &mdash; XGBoost Forecasting Pipeline
+        
+        
+          345,011 predictions per run &mdash; pipeline runs automatically before fleet departure
+          Lost sales correction built in &mdash; model trains on Qty_S + AI_Lost_Sales_Est, not corrupted zeros
+          New stores receive a prediction from day one via cross-store branch benchmarking (by design, not yet measured at scale)
+          Death spiral detection logic built in &mdash; dual-signal (sales_ratio &lt; 0.85 AND order_ratio &lt; 0.85) &mdash; early-warning lead time being measured in trial
+          Bundle promo handling built in &mdash; gift stock calculated automatically from forecast
+          Eid/Nataru tiered boost layer built in &mdash; designed to prevent seasonal stockouts, validation pending full Eid cycle
+        
+      
+    
+  
+
+
+
+
+
+
+  
+    
+      Projected Impact
+      Designed Impact &mdash; Trial Ongoing
+    
+    
+      
+        
+        4&ndash;5 hours of daily manual work eliminated &mdash; confirmedThis is the one confirmed operational outcome of the trial. Forecasting that previously required a person and a full morning now runs automatically and is ready before the distribution fleet departs. No model accuracy claim needed to state this.
+      
+      
+        
+        Detects death spirals 2&ndash;3 weeks before warehouse returnsDual-signal detection: sales_ratio &lt; 0.85 AND order_ratio &lt; 0.85 must both trigger simultaneously &mdash; guards against false alarms from genuine demand drops. Recovery floor is set to 90% of median_60d.
+      
+      
+        
+        Eid demand modelled with tiered multipliersT1 &times;1.25 (H-7 to H), T2 &times;1.15, T3 &times;1.08. Nataru &times;1.15. The business layer encodes domain knowledge that XGBoost cannot learn from sparse historical Eid windows. Effectiveness will be measurable after the next Eid cycle.
+      
+      
+        
+        New stores receive a signal from day oneCross-store features (Sales_Median_Cabang_PLU_14d, Rank_Toko_di_Cabang) provide a branch-level prior from day one. Whether this produces better allocations than the previous manual baseline is part of the trial evaluation.
+      
+      
+        
+        Automated pipeline with execution loggingSQL Server write and CSV export run on a daily automated schedule before fleet departure. Each run produces a structured execution log &mdash; timestamped diagnostics written to both the web UI and a persistent log file &mdash; enabling post-run review without re-running the pipeline. ORDER_MAX_RATIO cap (order &le; pred &times; 2.0) prevents edge-case over-ordering on low-volume SKUs.
+      
+    
+  
+
+
+
+
+
+
+  
+    
+      Live Product
+      Forecasting Pipeline &mdash; In Use
+      Run configuration panel: scope, branch filter, PLU, ABC scale multipliers, and stock trust threshold before pipeline execution.
+ - Live trial UI &middot; Branch &amp; store data anonymized
+
+[H2] Model Performance
+
+[H2] 6 Technical Problems Solved
+ - Each of these challenges is why an off-the-shelf model cannot be deployed directly in this context.
+
+[H2] XGBoost Feature Groups
+ - &plusmn;55 active features across 10 groups. Every feature exists for a specific operational reason. Notable: ABC classification is computed per-branch (not global) &mdash; a product can be A-class in Bekasi and C-class in Bogor. SHAP consistently ranks lag/rolling and cross-store features highest.
+
+[H2] Putting 96.6% WAPE in Context
+ - WAPE means different things at different data densities. At store&times;SKU&times;day granularity with 63% sparse records (LOW segment), 96.6% is not a weak result &mdash; it is top-quartile. The real operational metric is BIAS, not WAPE. BIAS +2.57% means total over-order is 2.57% across all 345K predictions.
+
+[H2] Tools Used
+
+[H2] Under the Hood &mdash; Key Engineering Details
+ - Most retail ML systems train on Qty_S directly &mdash; actual recorded sales. This system trains on Qty_S + AI_Lost_Sales_Est, estimating unmet demand from stockout and near-stockout signals using date-level data only.
+ - # Shift first, then roll  model only sees T-1 when predicting T
+# Split into two steps: shift() then rolling().mean() on the shifted column
+# This keeps both ops at C level  no lambda, no Python loop per group
+df.sort_values(['KdToko', 'KdProduk', 'TANGGAL'], inplace=True)
+df['_qty_shifted'] = df.groupby(['KdToko', 'KdProduk'])['Qty_S'].shift(1)
+df['Rata_Sales_14Hari'] = (
+    df.groupby(['KdToko', 'KdProduk'])['_qty_shifted']
+      .rolling(14, min_periods=1)
+      .mean()
+      .reset_index(level=[0, 1], drop=True)
+)
+df.drop(columns='_qty_shifted', inplace=True)
+
+# AI_Lost_Sales_Est  additive correction to training target, not replacement
+# Two scenarios: full stockout (Qty_S=0, Qty_S2=0) and near-stockout (Qty_S21)
+_lost_full = np.where(
+    (df['Qty_S'] == 0) &amp; (df['Qty_S2'] == 0),   # full stockout
+    df['Median_Sales_14Hari'], 0.0
+)
+_lost_near = np.where(
+    (df['Qty_S2'] &lt;= NEAR_STOCKOUT_THRESHOLD) &amp; (df['Qty_S'] &gt; 0),
+    df['Median_Sales_14Hari'] * LOST_SALES_NEAR_STOCKOUT_FACTOR, 0.0
+)
+df['AI_Lost_Sales_Est'] = (_lost_full + _lost_near).astype('float32')
+
+# Training target = actual sales + estimated lost demand
+# Standard XGBoost trains on Qty_S alone  this system trains on true demand
+tgt = (df['Qty_S'].fillna(0) + df['AI_Lost_Sales_Est'].fillna(0)).clip(lower=0)
+    
+    
+      
+        Training time
+        ~4 min for 345K rows
+      
+      
+        Features used
+        55 engineered  3 categorical
+      
+      
+        Model size
+        5 models: mdl_high + mdl_cat_sp/fp/tw + mdl_global
+      
+      
+        Output rows/day
+        345,011 (3-day horizon)
+      
+    
+  
+
+
+
+
+
+
+  
+    
+      System Architecture
+      Daily Pipeline &mdash; End to End
+      From raw sales data in SQL Server to a distribution-ready forecast file &mdash; fully automated pipeline currently in active trial. Production rollout pending business validation.
