@@ -867,7 +867,7 @@ dailySeq.<span class="code-fn">forEach</span>(val =&gt; {
 (function(){
   var btn=document.getElementById('btt');
   window.addEventListener('scroll',function() {btn.classList.toggle('vis',window.scrollY>600);},{passive:true});
-  btn.addEventListener('click',function() window.scrollTo({top:0,behavior:'smooth'}));
+  btn.addEventListener('click',function() { window.scrollTo({top:0,behavior:'smooth'}); });
 })();
 </script>
 </body>
